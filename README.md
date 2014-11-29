@@ -26,7 +26,22 @@ Or build from source. See [Harfbuzz](http://harfbuzz.org) website for instructio
 
 ## Usage
 
-TODO: Write usage instructions here
+Add the `:harfbuzz` plugin to your Dragonfly config block:
+
+```ruby
+Dragonfly.app.configure do
+  plugin :harfbuzz
+  # ...
+end
+```
+
+Then use as:
+
+```ruby
+font.hb_view('my text', :svg, { font_size: 36 })
+```
+
+See tests and `hb-view --help-all` for more details on options.
 
 ## Contributing
 

@@ -9,9 +9,9 @@ module DragonflyHarfbuzz
     # ---------------------------------------------------------------------
         
     describe 'processors' do
-      # it 'adds #correct_metrics' do
-      #   font.must_respond_to :correct_metrics
-      # end
+      it 'adds #hb_view' do
+        font.must_respond_to :hb_view
+      end
     end
 
   end
