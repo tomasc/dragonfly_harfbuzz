@@ -1,5 +1,10 @@
+require 'dragonfly'
+require "dragonfly_harfbuzz/plugin"
 require "dragonfly_harfbuzz/version"
 
 module DragonflyHarfbuzz
-  # Your code goes here...
+end
+
+Dragonfly.app.configure do
+  plugin :harfbuzz
 end
