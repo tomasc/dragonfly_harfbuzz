@@ -4,7 +4,9 @@ module DragonflyHarfbuzz
   module Processors
     class HbView
 
-      def call font, str, format=:svg, opts={}
+      def call font, str, opts={}
+        format = opts[:format] || :svg
+
         font.shell_update(ext: format) do |old_path, new_path|
           
           args = %W(
@@ -13,7 +15,7 @@ module DragonflyHarfbuzz
             --output-format=#{format}
           )
 
-          opts.each do |k, v|
+          opts.reject{ |k,v| k.to_sym == :format }.each do |k, v|
             args << "--#{k.to_s.gsub('_', '-')}=#{Shellwords.escape(v)}"
           end
 

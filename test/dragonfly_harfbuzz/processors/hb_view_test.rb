@@ -14,7 +14,7 @@ module DragonflyHarfbuzz
 
       describe 'options' do
         it 'passes options to command line ' do
-          processor.call(font, 'FOO', :svg, { foreground: '#ff00ff' }).data.must_include 'fill:rgb(100%,0%,100%);'
+          processor.call(font, 'FOO', { foreground: '#ff00ff' }).data.must_include 'fill:rgb(100%,0%,100%);'
         end
       end
 
