@@ -5,7 +5,7 @@ module DragonflyHarfbuzz
     class HbView
 
       def call font, str, opts={}
-        format = opts[:format] || :svg
+        format = opts.fetch(:format, :svg)
 
         font.shell_update(ext: format) do |old_path, new_path|
           
