@@ -9,12 +9,26 @@ module DragonflyHarfbuzz
       let(:font) { Dragonfly::Content.new(app, SAMPLES_DIR.join('Inconsolata.otf')) }
 
       it 'renders SVG by default' do
-        processor.call(font, 'FOO').path.split('.').last.must_equal 'svg'
+        processor.call(font, 'FOO')
+        font.meta['format'].must_equal 'svg'
       end
 
       describe 'options' do
         it 'passes options to command line ' do
-          processor.call(font, 'FOO', { foreground: '#ff00ff' }).data.must_include 'fill:rgb(100%,0%,100%);'
+          processor.call(font, 'FOO', { foreground: '#ff00ff' })
+          font.data.must_include 'fill:rgb(100%,0%,100%);'
+        end
+
+        it 'supports :markup_svg' do
+          processor.call(font, 'FOO', { markup_svg: true })
+          font.data.must_include 'word="FOO"'
+
+          font.data.must_include 'character="F"'
+          font.data.must_include 'character="O"'
+          font.data.must_include 'character="O"'
+
+          font.data.must_include 'class="character"'
+          font.data.must_include 'class="word"'
         end
       end
 

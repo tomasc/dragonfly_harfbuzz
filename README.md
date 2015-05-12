@@ -43,6 +43,10 @@ font.hb_view('my text', :svg, { font_size: 36 })
 
 See tests and `hb-view --help-all` for more details on options.
 
+## Options
+
+Additionally (for SVG only) you can pass the `markup_svg: true` options. The plugin then returns SVG that is organized into word and characters and marked up with additional data attributes.
+
 ## Contributing
 
 1. Fork it ( https://github.com/tomasc/dragonfly_harfbuzz/fork )
