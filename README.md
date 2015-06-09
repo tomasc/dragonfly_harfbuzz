@@ -45,7 +45,7 @@ See tests and `hb-view --help-all` for more details on options.
 
 ## Options
 
-Additionally (for SVG only) you can pass the `markup_svg: true` options. The plugin then returns SVG that is organized into word and characters and marked up with additional data attributes.
+Additionally (for `<svg>` only) you can pass two options: `markup_svg: Boolean` and `flatten_svg: Boolean`. `markup_svg` returns an `<svg>` that is organized into word and characters and marked up with additional data attributes. `flatten_svg` uses the result of `markup_svg` and further cleans up the `<svg>`, replacing the `<symbol>`, `<use>` elements with nested `<svg>`s. This is handy if you want to do some more precise animation/manipulation of the resulting `<svg>`.
 
 ## Contributing
 

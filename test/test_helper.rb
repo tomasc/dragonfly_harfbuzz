@@ -1,7 +1,7 @@
 require 'bundler/setup'
 
 require 'minitest'
-require 'minitest/autorun'
+require 'minitest/rails'
 require 'minitest/spec'
 
 require 'dragonfly'

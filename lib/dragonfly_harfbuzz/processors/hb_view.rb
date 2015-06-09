@@ -6,7 +6,8 @@ module DragonflyHarfbuzz
 
       def call font, str, opts={}
         format = opts.fetch(:format, :svg)
-        markup_svg = opts.fetch(:markup_svg, false)
+        flatten_svg = opts.fetch(:flatten_svg, false)
+        markup_svg = opts.fetch(:markup_svg, flatten_svg)
 
         font.shell_update(ext: format) do |old_path, new_path|
           args = %W(
@@ -15,7 +16,7 @@ module DragonflyHarfbuzz
             --output-format=#{format}
           )
 
-          opts.reject{ |k,v| %w(format markup_svg).include?(k.to_s) }.each do |k, v|
+          opts.reject{ |k,v| %w(format markup_svg flatten_svg).include?(k.to_s) }.each do |k, v|
             args << "--#{k.to_s.gsub('_', '-')}=#{Shellwords.escape(v)}"
           end
 
@@ -28,6 +29,7 @@ module DragonflyHarfbuzz
         end
 
         font.update(DragonflyHarfbuzz::MarkupSvgService.call(str, font.data)) if markup_svg && format.to_sym == :svg
+        font.update(DragonflyHarfbuzz::FlattenSvgService.call(font.data)) if flatten_svg && format.to_sym == :svg
       end
 
       def update_url(attrs, args='', opts={})

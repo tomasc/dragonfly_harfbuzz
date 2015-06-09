@@ -1,4 +1,5 @@
 require 'dragonfly'
+require "dragonfly_harfbuzz/flatten_svg_service"
 require "dragonfly_harfbuzz/markup_svg_service"
 require "dragonfly_harfbuzz/plugin"
 require "dragonfly_harfbuzz/version"
