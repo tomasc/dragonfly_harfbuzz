@@ -28,9 +28,11 @@ module DragonflyHarfbuzz
           font.ext = format
         end
 
-        font.update( DragonflyHarfbuzz::MarkupSvgService.call(str, font.data) ) if markup_svg && format.to_sym == :svg
-        font.update( DragonflyHarfbuzz::FlattenSvgService.call(font.data) ) if flatten_svg && format.to_sym == :svg
-        font.update( DragonflyHarfbuzz::DomAttrsService.call(font.data, opts[:font_size], opts[:margin]) )
+        if format.to_s =~ /svg/i
+          font.update( DragonflyHarfbuzz::MarkupSvgService.call(str, font.data) ) if markup_svg
+          font.update( DragonflyHarfbuzz::FlattenSvgService.call(font.data) ) if flatten_svg
+          font.update( DragonflyHarfbuzz::DomAttrsService.call(font.data, opts[:font_size], opts[:margin]) )
+        end
       end
 
       def update_url(attrs, args='', opts={})
