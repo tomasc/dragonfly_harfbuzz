@@ -23,6 +23,8 @@ module DragonflyHarfbuzz
           "hb-view #{Shellwords.escape(str)} #{args.join(' ')}"
         end
 
+        p font
+
         if format
           font.meta['format'] = format.to_s
           font.ext = format
