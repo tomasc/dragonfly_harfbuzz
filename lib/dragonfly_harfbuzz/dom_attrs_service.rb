@@ -8,8 +8,8 @@ module DragonflyHarfbuzz
     end
 
     def call
-      ox_doc[:'data-font-size'] = font_size if font_size.present?
-      ox_doc[:'data-margin'] = margin if margin.present?
+      ox_doc[:'data-font-size'] = font_size unless font_size.nil?
+      ox_doc[:'data-margin'] = margin unless margin.nil?
 
       Ox.dump(@ox_doc)
     end

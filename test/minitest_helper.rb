@@ -1,11 +1,11 @@
-require 'bundler/setup'
+$LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
+require "bundler/setup"
 
-require 'minitest'
-require 'minitest/rails'
-require 'minitest/spec'
+require "minitest"
+require "minitest/autorun"
+require "minitest/spec"
 
-require 'dragonfly'
-require 'dragonfly_harfbuzz'
+require "dragonfly_harfbuzz"
 
 # ---------------------------------------------------------------------
 
