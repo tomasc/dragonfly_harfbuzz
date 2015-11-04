@@ -22,6 +22,7 @@ module DragonflyHarfbuzz
 
         it 'supports :markup_svg' do
           processor.call(font, string, { markup_svg: true })
+
           font.data.must_include "word=\"#{string}\""
 
           font.data.must_include 'character="F"'
@@ -30,6 +31,12 @@ module DragonflyHarfbuzz
 
           font.data.must_include 'class="character"'
           font.data.must_include 'class="word"'
+        end
+
+        it 'supports :flatten_svg' do
+          processor.call(font, string, { flatten_svg: true })
+
+          font.data.wont_include "#glyph0-1"
         end
       end
 
