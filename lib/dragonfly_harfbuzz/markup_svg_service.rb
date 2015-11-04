@@ -31,6 +31,7 @@ module DragonflyHarfbuzz
 
         word_groups = []
         words_in_line(line).each_with_index do |word, word_index|
+          next if word =~ /\s+/
           word_groups << marked_up_word(word, word_index, line, line_group)
         end
 
@@ -45,11 +46,11 @@ module DragonflyHarfbuzz
     private # =============================================================
 
     def lines
-      text.split(/\n+/)
+      text.split /\n+/
     end
 
     def words_in_line line
-      line.split(/\s+/)
+      line.split /(\s+)/
     end
 
     # ---------------------------------------------------------------------
@@ -82,7 +83,7 @@ module DragonflyHarfbuzz
 
       previous_words = words_in_line(line)[0...word_index]
       index_offset = previous_words.join.length
-      
+
       index_of_first_character = index_offset + 0
       index_of_last_character = index_offset + word.length - 1
 

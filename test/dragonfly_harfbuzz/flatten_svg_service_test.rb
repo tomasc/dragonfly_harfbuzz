@@ -6,7 +6,7 @@ module DragonflyHarfbuzz
     let(:app) { test_app.configure_with(:harfbuzz) }
     let(:processor) { DragonflyHarfbuzz::Processors::HbView.new }
     let(:font) { Dragonfly::Content.new(app, SAMPLES_DIR.join('Inconsolata.otf')) }
-    let(:string) { 'foo foo' }
+    let(:string) { 'foo     foo' }
     let(:svg) { processor.call(font, string) }
     let(:call) { DragonflyHarfbuzz::FlattenSvgService.call(string, svg) }
 
