@@ -10,14 +10,5 @@ module DragonflyHarfbuzz
     let(:svg) { processor.call(font, string) }
     let(:call) { DragonflyHarfbuzz::FlattenSvgService.call(string, svg) }
 
-    # ---------------------------------------------------------------------
-
-    describe 'call' do
-      it 'does something' do
-        p svg
-        p call
-      end
-    end
-
   end
 end

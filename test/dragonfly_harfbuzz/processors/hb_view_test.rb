@@ -11,7 +11,6 @@ module DragonflyHarfbuzz
 
       it 'renders SVG by default' do
         processor.call(font, string)
-        p font
         font.meta['format'].must_equal 'svg'
       end
 

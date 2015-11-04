@@ -2,6 +2,9 @@ require 'ox'
 
 module DragonflyHarfbuzz
   class DomAttrsService < Struct.new :svg, :font_size, :margin
+    attr_accessor :ox_doc
+
+    # =====================================================================
 
     def self.call *args
       self.new(*args).call
@@ -11,7 +14,7 @@ module DragonflyHarfbuzz
       ox_doc[:'data-font-size'] = font_size unless font_size.nil?
       ox_doc[:'data-margin'] = margin unless margin.nil?
 
-      Ox.dump(@ox_doc)
+      Ox.dump(ox_doc)
     end
 
     private # =============================================================
@@ -19,6 +22,5 @@ module DragonflyHarfbuzz
     def ox_doc
       @ox_doc ||= Ox.parse(svg)
     end
-
   end
 end
