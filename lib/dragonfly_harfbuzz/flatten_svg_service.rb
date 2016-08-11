@@ -1,14 +1,12 @@
 require 'ox'
-require 'savage'
 
 module DragonflyHarfbuzz
   class FlattenSvgService
-
-    def self.call *args
-      self.new(*args).call
+    def self.call(*args)
+      new(*args).call
     end
 
-    def initialize svg
+    def initialize(svg)
       @svg = svg
       @ox_doc = Ox.parse(@svg)
     end
@@ -24,10 +22,10 @@ module DragonflyHarfbuzz
 
         word.nodes.clear
 
-        characters_to_add.each{ |char| word << char }
+        characters_to_add.each { |char| word << char }
       end
 
-      lines = @ox_doc.locate('g/g').select{ |g| g[:class] == 'line' }
+      lines = @ox_doc.locate('g/g').select { |g| g[:class] == 'line' }
 
       add_lines_to_doc(lines)
 
@@ -36,44 +34,43 @@ module DragonflyHarfbuzz
 
     private # =============================================================
 
-    def add_lines_to_doc lines
+    def add_lines_to_doc(lines)
       @ox_doc.nodes.clear
-
-      lines.each{ |line| @ox_doc << line }
+      lines.each { |line| @ox_doc << line }
     end
 
     def get_symbols
-      @ox_doc.locate("defs/g/symbol")
+      @ox_doc.locate('defs/g/symbol')
     end
 
     def get_words
-      @ox_doc.locate("g/g/g")
+      @ox_doc.locate('g/g/g')
     end
 
-    def get_characters_from_word word
-      word.locate("use")
+    def get_characters_from_word(word)
+      word.locate('use')
     end
 
-    def get_symbol_for_character character
-      symbols = @ox_doc.locate("defs/g/symbol")
-      symbol_href = character.attributes[:"xlink:href"].gsub(/\#/, '')
-
-      symbols.select{ |s| s.attributes[:id] == symbol_href }.first
+    def get_symbol_for_character(character)
+      symbols = @ox_doc.locate('defs/g/symbol')
+      symbol_href = character.attributes[:"xlink:href"].delete('#')
+      symbols.select { |s| s.attributes[:id] == symbol_href }.first
     end
 
-    def build_character_svg character, symbol
+    def build_character_svg(character, symbol)
       character_svg = Ox::Element.new('svg').tap do |prop|
         prop[:character] = character[:character]
-        prop[:class] = "character"
-        prop[:overflow] = "visible"
+        prop[:class] = 'character'
+        prop[:overflow] = 'visible'
         prop[:x] = character[:x]
         prop[:y] = character[:y]
       end
 
-      symbol.nodes.each{ |path| character_svg << path }
+      symbol.nodes.each do |path|
+        character_svg << path
+      end
 
       character_svg
     end
-
   end
 end
