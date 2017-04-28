@@ -20,7 +20,7 @@ You will also need Harfbuzz installed.
 
 Using [Homebrew](http://brew.sh):
 
-    $ brew install harfbuzz
+    $ brew install --with-cairo harfbuzz
 
 Or build from source. See [Harfbuzz](http://harfbuzz.org) website for instructions.
 
