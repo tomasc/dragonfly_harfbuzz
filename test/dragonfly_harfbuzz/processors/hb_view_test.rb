@@ -9,18 +9,17 @@ describe DragonflyHarfbuzz::Processors::HbView do
 
   DragonflyHarfbuzz::SUPPORTED_FORMATS.each do |format|
     describe format.to_s do
-      let(:content) { Dragonfly::Content.new(app, SAMPLES_DIR.join("sample.#{format}")) }
-      before { processor.call(content, string) }
-      it { content.ext.must_equal 'svg' }
-      it { content.mime_type.must_equal 'image/svg+xml' }
+      let(:content) { app.fetch_file SAMPLES_DIR.join("sample.#{format}") }
+      it { content.hb_view(string).ext.must_equal 'svg' }
+      it { content.hb_view(string).mime_type.must_equal 'image/svg+xml' }
     end
   end
 
   DragonflyHarfbuzz::SUPPORTED_OUTPUT_FORMATS.each do |format|
     describe "output to #{format}" do
-      before { processor.call(content, string, format: format) }
-      it { content.ext.must_equal format }
-      it { content.mime_type.must_equal Rack::Mime.mime_type(".#{format}") }
+      let(:content) { app.fetch_file SAMPLES_DIR.join("sample.otf") }
+      it { content.hb_view(string, format: format).ext.must_equal format }
+      it { content.hb_view(string, format: format).mime_type.must_equal Rack::Mime.mime_type(".#{format}") }
     end
   end
 
