@@ -8,22 +8,27 @@ describe DragonflyHarfbuzz::Processors::HbView do
   let(:string) { 'FOO' }
 
   DragonflyHarfbuzz::SUPPORTED_FORMATS.each do |format|
+    unless File.exists?(SAMPLES_DIR.join("sample.#{format}"))
+      it(format) { skip "sample.#{format} does not exist, skipping" }
+      next
+    end
+    
     describe format.to_s do
       let(:content) { app.fetch_file SAMPLES_DIR.join("sample.#{format}") }
-      it do
-        content.hb_view(string).ext.must_equal 'svg'
-        content.hb_view(string).mime_type.must_equal 'image/svg+xml'
-      end
+      let(:result) { content.hb_view(string) }
+      it { result.ext.must_equal 'svg' }
+      it { result.mime_type.must_equal 'image/svg+xml' }
+      it { result.size.must_be :>, 0 }
     end
   end
 
   DragonflyHarfbuzz::SUPPORTED_OUTPUT_FORMATS.each do |format|
     describe "output to #{format}" do
       let(:content) { app.fetch_file SAMPLES_DIR.join("sample.otf") }
-      it do
-        content.hb_view(string, format: format).ext.must_equal format
-        content.hb_view(string, format: format).mime_type.must_equal Rack::Mime.mime_type(".#{format}")
-      end
+      let(:result) { content.hb_view(string, format: format) }
+      it { result.ext.must_equal format }
+      it { result.mime_type.must_equal Rack::Mime.mime_type(".#{format}") }
+      it { result.size.must_be :>, 0 }
     end
   end
 
