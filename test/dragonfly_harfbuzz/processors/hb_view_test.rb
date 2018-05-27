@@ -15,23 +15,14 @@ describe DragonflyHarfbuzz::Processors::HbView do
       end
 
       let(:content) { app.fetch_file SAMPLES_DIR.join("sample.#{format}") }
-      it(format) do
-        result = content.hb_view(string)
-        result.ext.must_equal 'svg'
-        result.mime_type.must_equal 'image/svg+xml'
-        result.size.must_be :>, 0
-      end
-    end
-  end
 
-  describe 'SUPPORTED_OUTPUT_FORMATS' do
-    DragonflyHarfbuzz::SUPPORTED_OUTPUT_FORMATS.each do |format|
-      let(:content) { app.fetch_file SAMPLES_DIR.join("sample.otf") }
-      it(format) do
-        result = content.hb_view(string, format: format)
-        result.ext.must_equal format
-        result.mime_type.must_equal Rack::Mime.mime_type(".#{format}")
-        result.size.must_be :>, 0
+      DragonflyHarfbuzz::SUPPORTED_OUTPUT_FORMATS.each do |output_format|
+        it("#{format} to #{output_format}") do
+          result = content.hb_view(string, format: output_format)
+          result.ext.must_equal output_format
+          result.mime_type.must_equal Rack::Mime.mime_type(".#{output_format}")
+          result.size.must_be :>, 0
+        end
       end
     end
   end
