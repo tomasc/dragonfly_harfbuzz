@@ -11,6 +11,6 @@ module DragonflyHarfbuzz
   class UnsupportedFormat < RuntimeError; end
   class UnsupportedOutputFormat < RuntimeError; end
 
-  SUPPORTED_FORMATS = %w[otf].freeze
+  SUPPORTED_FORMATS = %w[otf ttf].freeze
   SUPPORTED_OUTPUT_FORMATS = %w[ansi png svg pdf ps eps].freeze
 end
