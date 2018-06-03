@@ -22,14 +22,10 @@ describe DragonflyHarfbuzz::Processors::HbView do
           result.ext.must_equal output_format
           result.mime_type.must_equal Rack::Mime.mime_type(".#{output_format}")
           result.size.must_be :>, 0
+          result.tempfile.path.must_match /\.#{output_format}\z/
         end
       end
     end
-  end
-
-  describe 'tempfile' do
-    before { processor.call(content, string) }
-    it { content.tempfile.path.must_match /\.svg\z/ }
   end
 
   describe 'foreground' do
