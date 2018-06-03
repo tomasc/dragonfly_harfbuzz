@@ -34,9 +34,9 @@ module DragonflyHarfbuzz
         content.ext = format
 
         if format =~ /svg/i
-          content.update(MarkupSvgService.call(str, content.data, split_paths: split_paths)) if markup_svg
-          content.update(FlattenSvgService.call(content.data)) if flatten_svg
-          content.update(DomAttrsService.call(content.data, options[:font_size], options[:margin]))
+          content.update(MarkupSvgService.call(str, content.data, split_paths: split_paths), 'name' => "temp.#{format}") if markup_svg
+          content.update(FlattenSvgService.call(content.data), 'name' => "temp.#{format}") if flatten_svg
+          content.update(DomAttrsService.call(content.data, options[:font_size], options[:margin]), 'name' => "temp.#{format}")
         end
       end
 

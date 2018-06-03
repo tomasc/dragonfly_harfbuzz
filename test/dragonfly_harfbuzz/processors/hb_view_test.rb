@@ -27,6 +27,11 @@ describe DragonflyHarfbuzz::Processors::HbView do
     end
   end
 
+  describe 'tempfile' do
+    before { processor.call(content, string) }
+    it { content.tempfile.path.must_match /\.svg\z/ }
+  end
+
   describe 'foreground' do
     before { processor.call(content, string, foreground: '#ff00ff') }
     it { content.data.must_include 'fill:rgb(100%,0%,100%);' }
