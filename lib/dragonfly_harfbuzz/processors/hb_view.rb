@@ -25,8 +25,8 @@ module DragonflyHarfbuzz
 
           args << "--text='#{str}'" unless options.has_key?('unicodes')
 
-          options.reject { |k, _v| %w[format markup_svg flatten_svg split_paths].include?(k.to_s) }.each do |k, v|
-            args << "--#{k.to_s.tr('_', '-')}=#{Shellwords.escape(v)}"
+          options.reject { |k, _| %w[format markup_svg flatten_svg split_paths].include?(k.to_s) }.each do |k, v|
+            args << "--#{k.to_s.tr('_', '-')}=#{Shellwords.escape(v)}" if v.present?
           end
 
           "#{hb_view_command} #{args.join(' ')}"
