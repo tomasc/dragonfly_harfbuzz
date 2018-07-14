@@ -4,10 +4,8 @@ module DragonflyHarfbuzz
   class DomAttrsService < Struct.new :svg, :font_size, :margin
     attr_accessor :ox_doc
 
-    # =====================================================================
-
-    def self.call *args
-      self.new(*args).call
+    def self.call(*args)
+      new(*args).call
     end
 
     def call
@@ -17,7 +15,7 @@ module DragonflyHarfbuzz
       Ox.dump(ox_doc)
     end
 
-    private # =============================================================
+    private
 
     def ox_doc
       @ox_doc ||= Ox.parse(svg)

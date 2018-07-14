@@ -32,7 +32,7 @@ module DragonflyHarfbuzz
       Ox.dump(@ox_doc)
     end
 
-    private # =============================================================
+    private
 
     def add_lines_to_doc(lines)
       @ox_doc.nodes.clear

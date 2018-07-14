@@ -1,5 +1,7 @@
 # Dragonfly Harfbuzz
 
+[![Build Status](https://travis-ci.org/tomasc/dragonfly_harfbuzz.svg)](https://travis-ci.org/tomasc/dragonfly_harfbuzz) [![Gem Version](https://badge.fury.io/rb/dragonfly_harfbuzz.svg)](http://badge.fury.io/rb/dragonfly_harfbuzz) [![Coverage Status](https://img.shields.io/coveralls/tomasc/dragonfly_harfbuzz.svg)](https://coveralls.io/r/tomasc/dragonfly_harfbuzz)
+
 [Harfbuzz](http://fontforge.github.io) renderer wrapped by [Dragonfly](http://markevans.github.io/dragonfly) processors.
 
 ## Installation
@@ -42,6 +44,15 @@ font.hb_view('my text', :svg, { font_size: 36 })
 ```
 
 See tests and `hb-view --help-all` for more details on options.
+
+## Supported Formats
+
+List of supported formats is available as:
+
+```ruby
+DragonflyHarfbuzz::SUPPORTED_FORMATS # => ["otf"]
+DragonflyHarfbuzz::SUPPORTED_OUTPUT_FORMATS # => ["ansi", "png", "svg", "pdf", "ps", "eps"]
+```
 
 ## Options
 

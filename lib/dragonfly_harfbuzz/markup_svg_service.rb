@@ -6,13 +6,9 @@ module DragonflyHarfbuzz
     attr_accessor :ox_doc
     attr_accessor :text
 
-    # =====================================================================
-
     def self.call(*args)
       new(*args).call
     end
-
-    # =====================================================================
 
     def initialize(text, svg, options = {})
       @text = text
@@ -43,7 +39,7 @@ module DragonflyHarfbuzz
       Ox.dump(ox_doc)
     end
 
-    private # =============================================================
+    private
 
     def lines
       text.split(/\n+/)
@@ -56,8 +52,6 @@ module DragonflyHarfbuzz
     def split_paths?
       @options.fetch(:split_paths, true)
     end
-
-    # ---------------------------------------------------------------------
 
     # FIXME: fix issues with negative paths ('O', 'd', etc.)
     def split_paths
@@ -76,8 +70,6 @@ module DragonflyHarfbuzz
         subpath_elements.each { |pth| symbol << pth }
       end
     end
-
-    # ---------------------------------------------------------------------
 
     def marked_up_word(word, word_index, line, line_group)
       word_group = Ox::Element.new('g').tap do |prop|

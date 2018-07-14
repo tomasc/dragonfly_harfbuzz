@@ -1,18 +1,10 @@
-require 'minitest_helper'
+require 'test_helper'
 
-module DragonflyHarfbuzz
-  describe Plugin do
+describe DragonflyHarfbuzz::Plugin do
+  let(:app) { test_app.configure_with(:harfbuzz) }
+  let(:content) { app.fetch_file(SAMPLES_DIR.join('sample.otf')) }
 
-    let(:app) { test_app.configure_with(:harfbuzz) }
-    let(:font) { app.fetch_file(SAMPLES_DIR.join('Inconsolata.otf')) }
-
-    # ---------------------------------------------------------------------
-
-    describe 'processors' do
-      it 'adds #hb_view' do
-        font.must_respond_to :hb_view
-      end
-    end
-
+  describe 'processors' do
+    it { content.must_respond_to :hb_view }
   end
 end
