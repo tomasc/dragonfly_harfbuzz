@@ -8,10 +8,9 @@ rvm:
 
 before_install:
   - gem update bundler
-  - sudo add-apt-repository -y ppa:ubuntuhandbook1/apps
   - sudo apt-get update
   - wget --no-check-certificate http://www.freedesktop.org/software/harfbuzz/release/harfbuzz-1.3.0.tar.bz2 && tar -xjf harfbuzz-1.3.0.tar.bz2 --no-same-owner
-  - cd harfbuzz-1.3.0 && ./configure && make && make install && rm -rf harfbuzz*
+  - cd harfbuzz-1.3.0 && sudo ./configure && sudo make && sudo make install && rm -rf harfbuzz*
 
 notifications:
   email:
