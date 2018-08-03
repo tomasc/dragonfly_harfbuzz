@@ -12,6 +12,10 @@ module DragonflyHarfbuzz
     describe 'flatten_svg' do
       before { processor.call(content, string, flatten_svg: true) }
 
+      describe 'lines' do
+        it { content.data.must_include "line=\"#{string}\" class=\"line\"" }
+      end
+
       describe 'words' do
         it { content.data.must_include '<g word="ABC" class="word">' }
         it { content.data.must_include '<g word="def" class="word">' }
