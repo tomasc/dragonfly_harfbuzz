@@ -47,4 +47,10 @@ describe DragonflyHarfbuzz::Processors::HbView do
     before { processor.call(content, string, flatten_svg: true) }
     it { content.data.wont_include '#glyph0-1' }
   end
+
+  describe 'str as unicodes' do
+    before { processor.call(content, nil, unicodes: "0042,0043", flatten_svg: true) }
+    it { content.data.must_include "<svg character=\"B\" class=\"character\"" }
+    it { content.data.must_include "<svg character=\"C\" class=\"character\"" }
+  end
 end
