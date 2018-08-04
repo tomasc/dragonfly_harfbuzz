@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.1.1
+
+* minor fixes
+
 ## 1.1.0
 
 * support `unicodes` option for `markup_svg: true`
