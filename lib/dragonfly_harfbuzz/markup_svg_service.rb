@@ -5,6 +5,7 @@ module DragonflyHarfbuzz
   class MarkupSvgService
     attr_accessor :ox_doc
     attr_accessor :text
+    attr_accessor :unicodes
     attr_accessor :options
     attr_accessor :svg
 
