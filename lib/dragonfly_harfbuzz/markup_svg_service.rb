@@ -5,6 +5,8 @@ module DragonflyHarfbuzz
   class MarkupSvgService
     attr_accessor :ox_doc
     attr_accessor :text
+    attr_accessor :options
+    attr_accessor :svg
 
     def self.call(*args)
       new(*args).call
@@ -13,7 +15,7 @@ module DragonflyHarfbuzz
     def initialize(text, svg, options = {})
       @text = text
       @svg = svg
-      @ox_doc = Ox.parse(@svg)
+      @ox_doc = Ox.parse(svg)
       @options = options
     end
 
@@ -50,7 +52,7 @@ module DragonflyHarfbuzz
     end
 
     def split_paths?
-      @options.fetch(:split_paths, true)
+      options.fetch(:split_paths, true)
     end
 
     # FIXME: fix issues with negative paths ('O', 'd', etc.)
