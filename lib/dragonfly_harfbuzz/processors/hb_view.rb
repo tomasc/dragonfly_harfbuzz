@@ -39,8 +39,10 @@ module DragonflyHarfbuzz
         if format =~ /svg/i
           content.update(MarkupSvgService.call((str || str_from_unicodes(unicodes)), content.data, split_paths: split_paths), 'name' => "temp.#{format}") if markup_svg
           content.update(FlattenSvgService.call(content.data), 'name' => "temp.#{format}") if flatten_svg
-          content.update(DomAttrsService.call(content.data, options[:font_size], options[:margin]), 'name' => "temp.#{format}")
+          content.update(DomAttrsService.call(content.data, options[:font_size], options[:margin]), 'name' => "temp.#{format}") if markup_svg
         end
+
+        content
       end
 
       def update_url(attrs, str = '', options = {})
