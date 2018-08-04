@@ -54,7 +54,11 @@ module DragonflyHarfbuzz
 
       def str_from_unicodes(unicodes)
         unicodes.split(",").map do |hexstring|
-          Array(hexstring).pack("H*").force_encoding('utf-16be').encode('utf-8')
+          begin
+            Array(hexstring).pack("H*").force_encoding('utf-16be').encode('utf-8')
+          rescue
+            " "
+          end
         end.join
       end
 
