@@ -7,11 +7,12 @@ module DragonflyHarfbuzz
         options = options.each_with_object({}) { |(k, v), memo| memo[k.to_s] = v } # stringify keys
         unicodes = options.fetch('unicodes', nil)
 
-        raise UnsupportedFormat unless SUPPORTED_FORMATS.include?(content.ext)
+        raise UnsupportedFormat unless content.ext
+        raise UnsupportedFormat unless SUPPORTED_FORMATS.include?(content.ext.downcase)
 
         format = options.fetch('format', 'svg').to_s
 
-        raise UnsupportedOutputFormat unless SUPPORTED_OUTPUT_FORMATS.include?(format)
+        raise UnsupportedOutputFormat unless SUPPORTED_OUTPUT_FORMATS.include?(format.downcase)
 
         flatten_svg = options.fetch('flatten_svg', false)
         markup_svg = options.fetch('markup_svg', flatten_svg)

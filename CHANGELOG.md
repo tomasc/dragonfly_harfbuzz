@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.1.2
+
+* improved `SUPPORTED_FORMATS` matching that ignores case
+
 ## 1.1.1
 
 * minor fixes
