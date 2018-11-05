@@ -5,7 +5,7 @@ describe DragonflyHarfbuzz::Processors::HbView do
   let(:content) { Dragonfly::Content.new(app, SAMPLES_DIR.join('sample.otf')) }
   let(:processor) { DragonflyHarfbuzz::Processors::HbView.new }
 
-  let(:string) { 'FOO' }
+  let(:string) { "F'OO" }
 
   describe 'SUPPORTED_FORMATS' do
     DragonflyHarfbuzz::SUPPORTED_FORMATS.each do |format|
