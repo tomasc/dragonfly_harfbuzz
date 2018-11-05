@@ -23,15 +23,13 @@ module DragonflyHarfbuzz
             --output-format=#{format}
           ]
 
-          args << "--text=#{str}" unless options.has_key?('unicodes')
+          args << content.shell.escape("--text=#{str}") unless options.has_key?('unicodes')
 
           options.reject { |k, _| %w[format markup_svg flatten_svg split_paths].include?(k.to_s) }.each do |k, v|
-            args << "--#{k.to_s.tr('_', '-')}=#{v}" if v.present?
+            args << content.shell.escape("--#{k.to_s.tr('_', '-')}=#{v}") if v.present?
           end
 
-          escaped_args = args.map{ |i| content.shell.escape(i) }
-
-          "#{hb_view_command} #{escaped_args.join(' ')}"
+          "#{hb_view_command} #{args.join(' ')}"
         end
 
         content.meta['format'] = format
