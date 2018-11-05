@@ -1,5 +1,3 @@
-require 'shellwords'
-
 module DragonflyHarfbuzz
   module Processors
     class HbView
@@ -31,7 +29,9 @@ module DragonflyHarfbuzz
             args << "--#{k.to_s.tr('_', '-')}=#{v}" if v.present?
           end
 
-          "#{hb_view_command} #{args.join(' ')}"
+          escaped_args = args.map{ |i| content.shell.escape(i) }
+
+          "#{hb_view_command} #{escaped_args.join(' ')}"
         end
 
         content.meta['format'] = format
