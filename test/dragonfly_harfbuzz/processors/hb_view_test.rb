@@ -5,11 +5,11 @@ describe DragonflyHarfbuzz::Processors::HbView do
   let(:content) { Dragonfly::Content.new(app, SAMPLES_DIR.join('sample.otf')) }
   let(:processor) { DragonflyHarfbuzz::Processors::HbView.new }
 
-  let(:string) { 'FOO' }
+  let(:string) { "F'OO" }
 
   describe 'SUPPORTED_FORMATS' do
     DragonflyHarfbuzz::SUPPORTED_FORMATS.each do |format|
-      unless File.exists?(SAMPLES_DIR.join("sample.#{format}"))
+      unless File.exist?(SAMPLES_DIR.join("sample.#{format}"))
         it(format) { skip "sample.#{format} does not exist, skipping" }
         next
       end
@@ -49,8 +49,8 @@ describe DragonflyHarfbuzz::Processors::HbView do
   end
 
   describe 'str as unicodes' do
-    before { processor.call(content, nil, unicodes: "0042,0043", flatten_svg: true) }
-    it { content.data.must_include "<svg character=\"B\" class=\"character\"" }
-    it { content.data.must_include "<svg character=\"C\" class=\"character\"" }
+    before { processor.call(content, nil, unicodes: '0042,0043', flatten_svg: true) }
+    it { content.data.must_include '<svg character="B" class="character"' }
+    it { content.data.must_include '<svg character="C" class="character"' }
   end
 end

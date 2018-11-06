@@ -25,7 +25,7 @@ module DragonflyHarfbuzz
             --output-format=#{format}
           ]
 
-          args << "--text='#{str}'" unless options.has_key?('unicodes')
+          args << "--text=#{Shellwords.escape(str)}" unless options.key?('unicodes')
 
           options.reject { |k, _| %w[format markup_svg flatten_svg split_paths].include?(k.to_s) }.each do |k, v|
             args << "--#{k.to_s.tr('_', '-')}=#{Shellwords.escape(v)}" if v.present?
@@ -46,7 +46,7 @@ module DragonflyHarfbuzz
         content
       end
 
-      def update_url(attrs, str = '', options = {})
+      def update_url(attrs, _str = '', options = {})
         format = options.fetch('format', 'svg').to_s
         attrs.ext = format
       end
@@ -54,11 +54,11 @@ module DragonflyHarfbuzz
       private
 
       def str_from_unicodes(unicodes)
-        unicodes.split(",").map do |hexstring|
+        unicodes.split(',').map do |hexstring|
           begin
-            Array(hexstring).pack("H*").force_encoding('utf-16be').encode('utf-8')
-          rescue
-            " "
+            Array(hexstring).pack('H*').force_encoding('utf-16be').encode('utf-8')
+          rescue StandardError
+            ' '
           end
         end.join
       end

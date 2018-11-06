@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.1.3
+
+* make sure that `str` argument to `hb_view` is properly escaped
+
 ## 1.1.2
 
 * improved `SUPPORTED_FORMATS` matching that ignores case
