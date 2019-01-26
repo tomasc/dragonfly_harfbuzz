@@ -56,7 +56,15 @@ DragonflyHarfbuzz::SUPPORTED_OUTPUT_FORMATS # => ["ansi", "png", "svg", "pdf", "
 
 ## Options
 
-Additionally (for `<svg>` only) you can pass the following options: `markup_svg: Boolean`, `split_paths: Boolean` and `flatten_svg: Boolean`. `markup_svg` returns an `<svg>` that is organized into word and characters and marked up with additional data attributes. `flatten_svg` uses the result of `markup_svg` and further cleans up the `<svg>`, replacing the `<symbol>`, `<use>` elements with nested `<svg>`s. This is handy if you want to do some more precise animation/manipulation of the resulting `<svg>`. `split_paths` is a feature of the `markup_svg` and controls whether the paths of each character are split up into smaller components.
+Additionally (for `<svg>` only) you can pass the following options: `translate: Hash[x: 0, y: 0]`, `markup_svg: Boolean`, `split_paths: Boolean` and `flatten_svg: Boolean`.
+
+`translate` translates glyph positions by specified `x` and/or `y` offset.
+
+`markup_svg` returns an `<svg>` that is organized into word and characters and marked up with additional data attributes.
+
+`flatten_svg` uses the result of `markup_svg` and further cleans up the `<svg>`, replacing the `<symbol>`, `<use>` elements with nested `<svg>`s. This is handy if you want to do some more precise animation/manipulation of the resulting `<svg>`.
+
+`split_paths` is a feature of the `markup_svg` and controls whether the paths of each character are split up into smaller components.
 
 ## Contributing
 

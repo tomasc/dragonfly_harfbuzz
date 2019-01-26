@@ -1,8 +1,12 @@
 # CHANGELOG
 
+## 1.1.4
+
+* ADD: `translate` option that translates glyph positions by specified `x` and/or `y` offset
+
 ## 1.1.3
 
-* make sure that `str` argument to `hb_view` is properly escaped
+* FIX: make sure that `str` argument to `hb_view` is properly escaped
 
 ## 1.1.2
 
@@ -10,7 +14,7 @@
 
 ## 1.1.1
 
-* minor fixes
+* FIX: minor fixes
 
 ## 1.1.0
 
@@ -19,5 +23,5 @@
 
 ## 1.0.0
 
-* add `SUPPORTED_FORMATS` and `SUPPORTED_OUTPUT_FORMATS` and raise errors when formats are not matching
-* add more thorough tests for supported formats
+* ADD: `SUPPORTED_FORMATS` and `SUPPORTED_OUTPUT_FORMATS` and raise errors when formats are not matching
+* ADD: more thorough tests for supported formats

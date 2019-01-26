@@ -33,6 +33,18 @@ describe DragonflyHarfbuzz::Processors::HbView do
     it { content.data.must_include 'fill:rgb(100%,0%,100%);' }
   end
 
+  describe 'translate_x' do
+    let(:string) { 'A' }
+    before { processor.call(content, string, translate: { x: 100 }) }
+    it { content.data.must_include 'x="116.0"' }
+  end
+
+  describe 'translate_y' do
+    let(:string) { 'A' }
+    before { processor.call(content, string, translate: { y: 100 }) }
+    it { content.data.must_include 'y="329.5"' }
+  end
+
   describe 'markup_svg' do
     before { processor.call(content, string, markup_svg: true) }
     it { content.data.must_include "word=\"#{string}\"" }
